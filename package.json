@@ -1,0 +1,15 @@
+{
+  "name": "node-notekeeper",
+  "version": "1.0.0",
+  "description": "A CLI notekeeping app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ed Glazenski",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.16.4",
+    "yargs": "^6.0.0"
+  }
+}
