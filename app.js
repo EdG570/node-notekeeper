@@ -11,8 +11,9 @@ const body = argv.body;
 
 switch(command) {
   case 'add':
-    console.log('Adding note');
-    notes.addNote(title, body);
+    console.log('Adding note...');
+    let newNote = notes.addNote(title, body);
+    newNote ? console.log('')
     break;
   case 'list':
     console.log('Listing notes');

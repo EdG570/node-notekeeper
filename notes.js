@@ -31,10 +31,12 @@ const addNote = (title, body) => {
     if (target.length === 0) {
       notes.push(newNote);
       saveFile(notes);
+      return newNote;
     }
   } else {
     notes.push(newNote);
     saveFile(notes);
+    return newNote;
   }
 
   // create the new note object

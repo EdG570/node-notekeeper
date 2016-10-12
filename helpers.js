@@ -22,6 +22,14 @@ const getFormattedDate = () => {
   return `${mm} ${dd}, ${yyyy} @ ${time}`;
 }
 
+const printNote = (note) => {
+  console.log(`Title: ${note.title}`);
+  console.log(`Body: ${note.body}`);
+}
+
 module.exports = {
-  getFormattedDate
+  getFormattedDate,
+  printNote,
+  convertMonth,
+  formatTime
 };
