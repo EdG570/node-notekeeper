@@ -41,18 +41,35 @@ const addNote = (title, body) => {
 }
 
 const fetchAllNotes = () => {
-  // Get all notes
   const notes = fetchFile();
-  // Display them to the console
+
   if (notes.length > 0) {
     notes.forEach((note) => {
       helpers.printNote(note);
       console.log('---');
     });
+
+    return true;
+  }
+
+  return false;
+}
+
+const fetchOneNote = (title) => {
+  const notes = fetchFile();
+  const targetNote = notes.filter(note => note.title === title);
+
+  if (targetNote.length === 0) {
+    return false;
+  } else if (targetNote.length === 1) {
+    helpers.printNote(targetNote[0]);
+    return targetNote[0];
   }
 }
 
 module.exports = {
   addNote,
-  fetchAllNotes
+  fetchAllNotes,
+  fetchOneNote
 };
+
