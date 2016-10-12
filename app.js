@@ -13,10 +13,17 @@ switch(command) {
   case 'add':
     console.log('Adding note...');
     let newNote = notes.addNote(title, body);
-    newNote ? console.log('')
+
+    if (newNote) {
+      console.log(`${note.title} was successfully added`);
+    }
+    else {
+      console.log(`Sorry, ${note.title} was not saved because it already exists`);
+    }
     break;
   case 'list':
-    console.log('Listing notes');
+    console.log('Listing notes...');
+    notes.fetchAllNotes();
     break;
   case 'remove':
     console.log('Removing note');

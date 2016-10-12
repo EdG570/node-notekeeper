@@ -38,16 +38,21 @@ const addNote = (title, body) => {
     saveFile(notes);
     return newNote;
   }
+}
 
-  // create the new note object
-  // fetch notes file
-  // Check if note title exists
-  //    If note doesn't exist add new note object to fetch notes file
-  //    else do nothing and return a response to the user that note exists and it wasn't saved
-  // save updated notes file
-
+const fetchAllNotes = () => {
+  // Get all notes
+  const notes = fetchFile();
+  // Display them to the console
+  if (notes.length > 0) {
+    notes.forEach((note) => {
+      helpers.printNote(note);
+      console.log('---');
+    });
+  }
 }
 
 module.exports = {
-  addNote
+  addNote,
+  fetchAllNotes
 };

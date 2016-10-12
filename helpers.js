@@ -1,7 +1,7 @@
 const convertMonth = (month) => {
   const MONTHS = [
-    'Jan', 'Feb', 'March', 'April', 'May', 'June',
-    'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
   ];
 
   return MONTHS[month];
