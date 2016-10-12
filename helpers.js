@@ -27,9 +27,23 @@ const printNote = (note) => {
   console.log(`Body: ${note.body}`);
 }
 
+const printAllNotes = (notes) => {
+  notes.forEach((note) => {
+    printNote(note);
+    console.log('---');
+  });
+}
+
+const printHeader = (msg) => {
+  console.log(msg);
+  console.log('---');
+};
+
 module.exports = {
   getFormattedDate,
   printNote,
   convertMonth,
-  formatTime
+  formatTime,
+  printAllNotes,
+  printHeader
 };

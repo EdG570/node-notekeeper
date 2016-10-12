@@ -12,8 +12,7 @@ const body = argv.body;
 
 switch(command) {
   case 'add':
-    console.log('Adding note...');
-    console.log('---');
+    helpers.printHeader('Adding note...');
     let newNote = notes.addNote(title, body);
 
     if (newNote) {
@@ -24,8 +23,7 @@ switch(command) {
     }
     break;
   case 'list':
-    console.log('Fetching notes...');
-    console.log('---');
+    helpers.printHeader('Fetching notes...');
     const notEmpty = notes.fetchAllNotes();
 
     if (!notEmpty) {
@@ -33,11 +31,11 @@ switch(command) {
     }
     break;
   case 'remove':
-    console.log('Removing note');
+    helpers.printHeader('Removing note...');
+    notes.deleteNote(title);
     break;
   case 'read':
-    console.log('Fetching note...');
-    console.log('---');
+    helpers.printHeader('Fetching note...');
     const targetNote = notes.fetchOneNote(title);
 
     if (!targetNote) {

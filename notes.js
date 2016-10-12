@@ -67,9 +67,20 @@ const fetchOneNote = (title) => {
   }
 }
 
+const deleteNote = (title) => {
+  const notes = fetchFile();
+  const newArr = notes.filter(note => note.title !== title);
+
+  saveFile(newArr);
+  helpers.printAllNotes(newArr);
+  return newArr;
+}
+
+
 module.exports = {
   addNote,
   fetchAllNotes,
-  fetchOneNote
+  fetchOneNote,
+  deleteNote
 };
 
