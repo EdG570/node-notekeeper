@@ -44,14 +44,9 @@ const fetchAllNotes = () => {
   const notes = fetchFile();
 
   if (notes.length > 0) {
-    notes.forEach((note) => {
-      helpers.printNote(note);
-      console.log('---');
-    });
-
+    helpers.printAllNotes(notes);
     return true;
   }
-
   return false;
 }
 
@@ -62,7 +57,6 @@ const fetchOneNote = (title) => {
   if (targetNote.length === 0) {
     return false;
   } else if (targetNote.length === 1) {
-    helpers.printNote(targetNote[0]);
     return targetNote[0];
   }
 }
