@@ -49,6 +49,10 @@ switch(command) {
     if(!foundNote) console.log('Unable to find the specified note. Please try again.');
 
     break;
+  case 'lastEdit':
+    helpers.printHeader('Checking when note was last edited...');
+    notes.lastEdit(title);
+    break;
   default:
     console.log("Sorry but that isn't a valid command");
 }

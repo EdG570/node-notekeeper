@@ -70,41 +70,58 @@ const fetchOneNote = (title) => {
 const deleteNote = (title) => {
   const notes = fetchFile();
   const newArr = notes.filter(note => note.title !== title);
-
   saveFile(newArr);
   helpers.printAllNotes(newArr);
   return newArr;
 }
 
 const updateNote = (title, newTitle, newBody) => {
-  const notes = fetchFile();
+  let newObj = {};
+  let notes = fetchFile();
+  let updatedNote;
   let targetNote = notes.filter(note => note.title === title);
 
-  if (targetNote.length > 0) {
+  if (targetNote.length === 1) {
     targetNote = targetNote[0];
   } else if (targetNote.length === 0) {
     return false;
   }
 
-  if (newTitle) targetNote.title = newTitle;
-  if (newBody) targetNote.body = newBody;
-  targetNote.updatedAt = helpers.getFormattedDate();
+  if (newTitle) newObj.title = newTitle;
+  if (newBody) newObj.body = newBody;
+  newObj.updatedAt = helpers.getFormattedDate();
 
-  let updatedNotes = notes.filter(note => note.title !== title);
-  updatedNotes.push(targetNote);
+  updatedNote = Object.assign({}, targetNote, newObj);
 
-  saveFile(updatedNotes);
-  helpers.printNote(targetNote);
+  notes = notes.filter(note => note.title !== title);
+  notes.push(updatedNote);
 
-  return targetNote;
+  saveFile(notes);
+  helpers.printNote(updatedNote);
+
+  return updatedNote;
 };
 
+const lastEdit = (title) => {
+  const notes = fetchFile();
+  let target = notes.filter(note => note.title === title);
+  let created = target[0].createdAt;
+  target = target[0].updatedAt;
+
+  if (target === created) {
+    console.log(`No changes have been made to ${title} since its creation: ${created}`);
+  } else {
+    console.log(`${title} was created on ${created}`);
+    console.log(`${title} was last changed on ${target}`);
+  }
+};
 
 module.exports = {
   addNote,
   fetchAllNotes,
   fetchOneNote,
   deleteNote,
-  updateNote
+  updateNote,
+  lastEdit
 };
 
