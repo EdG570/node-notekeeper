@@ -36,7 +36,8 @@ switch(command) {
 
   case 'remove':
     helpers.printHeader('Removing note...');
-    notes.deleteNote(title);
+    const notes = notes.deleteNote(title);
+    helpers.printAllNotes(notes);
     break;
 
   case 'read':
@@ -58,7 +59,9 @@ switch(command) {
     break;
   case 'lastEdit':
     helpers.printHeader('Checking when note was last edited...');
-    notes.lastEdit(title);
+    const note = notes.lastEdit(title);
+
+    if (!note) console.log(`${title} was not found`);
     break;
   default:
     console.log("Sorry but that isn't a valid command");
