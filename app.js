@@ -9,6 +9,8 @@ const argv = yargs.argv;
 const command = argv._[0];
 const title = argv.title;
 const body = argv.body;
+const newTitle = argv.newTitle;
+const newBody = argv.newBody;
 
 switch(command) {
   case 'add':
@@ -41,6 +43,10 @@ switch(command) {
     if (!targetNote) {
       console.log(`${title} was not found`)
     }
+  case 'update':
+    const foundNote = notes.updateNote(title, newTitle, newBody);
+
+    if(!foundNote) console.log('Unable to find the specified note. Please try again.');
 
     break;
   default:

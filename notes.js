@@ -76,11 +76,35 @@ const deleteNote = (title) => {
   return newArr;
 }
 
+const updateNote = (title, newTitle, newBody) => {
+  const notes = fetchFile();
+  let targetNote = notes.filter(note => note.title === title);
+
+  if (targetNote.length > 0) {
+    targetNote = targetNote[0];
+  } else if (targetNote.length === 0) {
+    return false;
+  }
+
+  if (newTitle) targetNote.title = newTitle;
+  if (newBody) targetNote.body = newBody;
+  targetNote.updatedAt = helpers.getFormattedDate();
+
+  let updatedNotes = notes.filter(note => note.title !== title);
+  updatedNotes.push(targetNote);
+
+  saveFile(updatedNotes);
+  helpers.printNote(targetNote);
+
+  return targetNote;
+};
+
 
 module.exports = {
   addNote,
   fetchAllNotes,
   fetchOneNote,
-  deleteNote
+  deleteNote,
+  updateNote
 };
 
